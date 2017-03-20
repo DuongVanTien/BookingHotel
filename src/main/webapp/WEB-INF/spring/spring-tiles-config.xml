@@ -10,11 +10,60 @@
 		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/views/layout/menu.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+		<put-attribute name="body" value="" />
 	</definition>
 
 	<definition name="index" extends="base.definition">
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+	</definition>
+	
+	<!-- show room -->
+	<definition name="rooms" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/views/room/rooms.jsp"/>
+	</definition>
+
+	<!-- add room -->
+	<definition name="newRoom" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/views/room/new.jsp"/>
+	</definition>
+
+	<!-- edit room -->
+	<definition name="editRoom" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/views/room/edit.jsp"/>
+	</definition>
+
+	<!-- show service -->
+	<definition name="services" extends="base.definition">
+		<put-attribute name="title" value="Home"/>
+		<put-attribute name="body" value="/WEB-INF/views/service/services.jsp"/>
+	</definition>
+
+	<!-- add service -->
+	<definition name="newService" extends="base.definition">
+		<put-attribute name="title"	value="Home"/>
+		<put-attribute name="body" value="/WEB-INF/views/service/new.jsp"/>
+	</definition>
+
+	<!-- edit service -->
+	<definition name="editService" extends="base.definition">
+		<put-attribute name="title" value="Home"/>
+		<put-attribute name="body" value="/WEB-INF/views/service/edit.jsp"/>
+	</definition>
+
+	<!-- view booking -->
+	<definition name="viewBooking" extends="base.definition">
+		<put-attribute name="title" value="Booking"/>
+		<put-attribute name="body" value="/WEB-INF/views/booking/viewBooking.jsp"/>
+	</definition>
+
+	<!-- booking -->
+	<definition name="booking" extends="base.definition">
+		<put-attribute name="title" value="Booking"/>
+		<put-attribute name="body" value="/WEB-INF/views/booking/booking.jsp"/>
 	</definition>
 
 </tiles-definitions>

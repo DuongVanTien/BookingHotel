@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface IUserService extends Serializable{
 
-    public List<UserBean> findAll();
+    public List<UserBean> findAllUsers();
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="vn.framgia.model.Booking" table="tblBooking">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" length="6"/>
+            <generator class="increment"/>
+        </id>
+
+        <property name="checkin" type="java.util.Date">
+            <column name="checkin"/>
+        </property>
+
+        <property name="checkout" type="java.util.Date">
+            <column name="checkout"/>
+        </property>
+
+        <property name="totalPrice" type="java.lang.Float">
+            <column name="totalPrice" length="10"/>
+        </property>
+
+        <property name="note" type="java.lang.String">
+            <column name="note"/>
+        </property>
+
+        <property name="isCheckin" type="java.lang.Integer">
+            <column name="isCheckin"/>
+        </property>
+
+        <many-to-one name="client" class="vn.framgia.model.Client" column="clientId" not-null="true"/>
+        <many-to-one name="room" class="vn.framgia.model.Room" column="roomId" not-null="true" fetch="join"/>
+
+        <!--<list name="services" cascade="all" table="tblUsedService" lazy="true" fetch="select">-->
+            <!--<key column="serviceId"/>-->
+            <!--<index column="idx"/>-->
+            <!--<many-to-many class="vn.framgia.model.Service"/>-->
+        <!--</list>-->
+
+        <set name="services" table="tblUsedService" inverse="true">
+            <key column="bookingId"/>
+            <many-to-many column="serviceId" class="vn.framgia.model.Service" />
+        </set>
+    </class>
+
+</hibernate-mapping>

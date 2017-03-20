@@ -24,23 +24,14 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private IUserService userService;
+    IUserService userService;
 
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
-        logger.info("Welcome index page! The client locale");
+        logger.info("view index");
         HashMap<String, Object> model = new HashMap<String, Object>();
-        model.put("attributes", "Xin chao cac ban!");
-
-        List<UserBean> userInfoList = userService.findAll();
-        System.out.println("--X--"+userInfoList);
-        if (!Helpers.isEmpty(userInfoList)) {
-            for (UserBean userInfo : userInfoList) {
-                System.out.println("id---------------:"+userInfo.getEmail());
-            }
-        }
-
-        return new ModelAndView("index",	model);
+        List<UserBean> listUsersBean = userService.findAllUsers();
+        return new ModelAndView("index", model);
     }
 }

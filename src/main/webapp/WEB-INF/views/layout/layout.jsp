@@ -1,4 +1,5 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -17,7 +18,7 @@
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jjquery-1.8.3.min.js"></script>
+<script src="assets/js/jquery-1.8.3.min.js"></script>
 <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
 <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
@@ -27,24 +28,24 @@
 <!--common script for all pages-->
 <script src="assets/js/common-scripts.js"></script>
 
-<!--script for this page-->
-<script>
-    $(function(){
-        $('select.styled').customSelect();
-    });
-</script>
 </head>
 <body>
 <section id="container" >
-		<div><tiles:insertAttribute name="header" /></div>
-		<div><tiles:insertAttribute name="menu" /></div>
+		<div>
+			<tiles:insertAttribute name="header" />
+		</div>
+		<div>
+			<tiles:insertAttribute name="menu" />
+		</div>
 		<section id="main-content">
-          <section class="wrapper site-min-height">
-          	<div class="row mt">
-          		<div class="col-lg-12"><tiles:insertAttribute name="body" /></div>
+          <section class="wrapper">
+          	<div class="row">
+          		<%--<div class="col-lg-12">--%>
+					<tiles:insertAttribute name="body" />
+				<%--</div>--%>
           	</div>
 		  </section>
-        </section>	
+        </section>
    	    <div><tiles:insertAttribute name="footer" /></div>
 </section>    	
 </body>
