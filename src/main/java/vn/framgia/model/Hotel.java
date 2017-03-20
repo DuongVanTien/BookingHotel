@@ -11,28 +11,20 @@ import java.util.Set;
  */
 public class Hotel implements Serializable {
 
-    private int id;
+    private Integer id;
     private String name;
     private String address;
-    private int starLevel;
+    private Integer starLevel;
     private String description;
     List<Room> rooms = new ArrayList<Room>();;
 
     public Hotel(){}
 
-    public Hotel(int id) {
+    public Hotel(Integer id) {
         this.id = id;
     }
 
-    public Hotel(int id, String name, String address, int starLevel, String description) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.starLevel = starLevel;
-        this.description = description;
-    }
-
-    public Hotel(int id, String name, String address, int starLevel, String description, List<Room> rooms) {
+    public Hotel(Integer id, String name, String address, Integer starLevel, String description, List<Room> rooms) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -41,11 +33,11 @@ public class Hotel implements Serializable {
         this.rooms = rooms;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,11 +57,11 @@ public class Hotel implements Serializable {
         this.address = address;
     }
 
-    public int getStarLevel() {
+    public Integer getStarLevel() {
         return starLevel;
     }
 
-    public void setStarLevel(int starLevel) {
+    public void setStarLevel(Integer starLevel) {
         this.starLevel = starLevel;
     }
 

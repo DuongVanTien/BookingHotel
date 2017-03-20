@@ -8,11 +8,15 @@
             <generator class="increment"/>
         </id>
 
+        <property name="fullName" type="java.lang.String">
+            <column name="fullname" length="40"/>
+        </property>
+
         <property name="cardNumber" type="java.lang.String">
             <column name="cardNumber" length="15"/>
         </property>
 
-        <property name="birthday" type="java.util.Date">
+        <property name="birthDay" type="java.util.Date">
             <column name="birthday"/>
         </property>
 

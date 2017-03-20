@@ -1,5 +1,6 @@
 package vn.framgia.bean;
 
+import vn.framgia.model.Room;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,28 +10,20 @@ import java.util.List;
  *
  */
 public class HotelBean implements Serializable {
-    private int id;
+    private Integer id;
     private String name;
     private String address;
-    private int starLevel;
+    private Integer starLevel;
     private String description;
-    List<Room> rooms = new ArrayList<Room>();;
+    List<Room> rooms = new ArrayList<Room>();
 
-    public HotelBean(){}
+    public HotelBean(){};
 
-    public HotelBean(int id) {
+    public HotelBean(Integer id) {
         this.id = id;
     }
 
-    public HotelBean(int id, String name, String address, int starLevel, String description) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.starLevel = starLevel;
-        this.description = description;
-    }
-
-    public HotelBean(int id, String name, String address, int starLevel, String description, List<Room> rooms) {
+    public HotelBean(Integer id, String name, String address, Integer starLevel, String description, List<Room> rooms) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -39,11 +32,11 @@ public class HotelBean implements Serializable {
         this.rooms = rooms;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,11 +56,11 @@ public class HotelBean implements Serializable {
         this.address = address;
     }
 
-    public int getStarLevel() {
+    public Integer getStarLevel() {
         return starLevel;
     }
 
-    public void setStarLevel(int starLevel) {
+    public void setStarLevel(Integer starLevel) {
         this.starLevel = starLevel;
     }
 

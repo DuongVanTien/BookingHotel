@@ -11,30 +11,43 @@ import java.util.List;
  * Created by FRAMGIA\duong.van.tien on 10/03/2017.
  */
 public class ClientBean implements Serializable {
-    private int id;
-    private String fullname;
+    private Integer id;
+    private String fullName;
     private String cardNumber;
-    private Date birthday;
+    private Date birthDay;
     private String address;
     private String phone;
     List<Booking> bookings =  new ArrayList<Booking>();
 
-    public ClientBean() {}
+    public ClientBean() {
+        super();
+    }
 
-    public int getId() {
+    public ClientBean(Integer id, String fullName, String cardNumber, Date birthDay,
+                  String address, String phone) {
+        super();
+        this.id = id;
+        this.fullName = fullName;
+        this.cardNumber = cardNumber;
+        this.birthDay = birthDay;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getCardNumber() {
@@ -45,12 +58,12 @@ public class ClientBean implements Serializable {
         this.cardNumber = cardNumber;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public Date getBirthDay() {
+        return birthDay;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 
     public String getAddress() {

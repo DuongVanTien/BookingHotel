@@ -27,7 +27,8 @@
 </style>
 
 <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js">
+</script>
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
@@ -36,7 +37,7 @@
         var date_input = $('input[name="startDate"]');
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
         date_input.datepicker({
-            format: 'yyyy/MM/dd',
+            format: 'yyyy/mm/dd',
             container: container,
             todayHighlight: true,
             autoclose: true
@@ -46,14 +47,13 @@
         var date_input = $('input[name="endDate"]');
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
         date_input.datepicker({
-            format: 'yyyy/MM/dd',
+            format: 'yyyy/mm/dd',
             container: container,
             todayHighlight: true,
             autoclose: true
         })
     });
 </script>
-<%--<!-- col-lg-9 -->--%>
 <div class="col-lg-9 ">
     <div class="col-md-12">
         <div class="col-md-3 col-sm-6 col-xs-12"></div>
@@ -68,7 +68,7 @@
         <div class="bootstrap-iso">
             <div class="container-fluid">
                 <div class="row">
-                    <form:form class="form-horizontal" modelAttribute="conditionBookingBeanForm" id="formCondition"
+                    <form:form class="form-horizontal" modelAttribute="conditionBookingBeanForm" id="formSearch"
                                action="${pageContext.request.contextPath}/searchRoomCondition" method="POST">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <br/>
@@ -82,7 +82,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input class="form-control" path="startDate" id="startDate" name="startDate"
+                                        <form:input class="form-control" path="startDate" id="startDate" name="startDate"
                                                placeholder="yyyy/mm/dd" type="text"
                                                value="${conditionBookingBeanForm.startDate}"/>
                                     </div>
@@ -121,7 +121,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input class="form-control" path="endDate" id="endDate" name="endDate"
+                                        <form:input class="form-control" path="endDate" id="endDate" name="endDate"
                                                placeholder="yyyy/mm/dd" type="text"
                                                value="${conditionBookingBeanForm.endDate}"/>
                                     </div>
@@ -131,9 +131,9 @@
                                 <label class="control-label col-sm-4 requiredField">
                                 </label>
                                 <div class="col-sm-8">
-                                    <button class="btn btn-primary " name="submit" type="submit">
-                                        Search
-                                    </button>
+                                    <div class="col-sm-6 col-xs-6 ">
+                                        <a class="btn btn-success " style="color: #efeaee" id="btnSearch"> Search </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -151,8 +151,8 @@
                     <form:form class="form-horizontal style-form" modelAttribute="roomBeanForm" id="formRoom"
                                action="${pageContext.request.contextPath}/booking" method="POST">
                         <input type="hidden" id="id" name="id" path="id" value="${room.id}"/>
-                        <input  id="start" name="start" path="start"  value="${room.start}"/>
-                        <input  id="end" name="end" path="end" value="${room.end}"/>
+                        <input type="hidden" id="start" name="start" path="start" value="${room.start}"/>
+                        <input type="hidden" id="end" name="end" path="end" value="${room.end}"/>
                         <div class="col-md-4 col-sm-4 mb">
                             <div class="white-panel pn">
                                 <div style="background-color: #039BE5; padding: 3px; margin-bottom: 15px; color: white">
@@ -172,8 +172,7 @@
                                 <div class="row">
                                     <div class="col-sm-3 col-xs-3 goleft"></div>
                                     <div class="col-sm-6 col-xs-6">
-
-                                        <a class="btn btn-theme" id="btnSubmit" href="#"> Booking </a>
+                                        <a class="btn btn-theme" id="btnSubmit"> Booking </a>
                                     </div>
                                 </div>
                             </div>
@@ -184,9 +183,7 @@
         </div>
     </div>
 </div>
-<!-- /col-lg-9 -->
 
-<!-- RIGHT -->
 <div class="col-lg-3 ds">
     <h3>NOTIFICATIONS</h3>
     <div class="desc">
@@ -205,32 +202,60 @@
     <div id="calendar" class="mb"></div>
 </div>
 
-
 <script type="text/javascript">
-    $('#btnSubmit').on("click", function () {
-        var startDateVal = $("#startDate").val();
-        var endDateVal = $("#endDate").val();
-//        $("#start").attr("value",startDateVal);
-//        $("#end").attr("value",endDateVal);
-        var check = true;
-        if (checkEmpty(startDateVal)) {
-            $("#err_startDate").text("start date is not empty");
-            check = false;
-        }
-        if (checkEmpty(endDateVal)) {
-            $("#err_endDate").text("end date is not empty");
-            check = false;
-        }
-        console.log("----" + check)
-        if (check) {
-            $("#formRoom").submit();
-//            $("#formCondition").submit();
-        }
-    });
+
     function checkEmpty(str) {
         if (str == "") {
             return true;
         }
         return false;
     }
+
+    function checkEndDate(endDate) {
+        if(checkEmpty(endDate)) {
+            $("#err_endDate").text("end date is not empty");
+            return true;
+        }
+        return false;
+    }
+    function checkStartDate(startDate) {
+        if(checkEmpty(startDate)) {
+            $("#err_startDate").text("start date is not empty");
+            return true;
+        }
+        return false;
+    }
+
+    $('#btnSubmit').on("click", function (e) {
+        e.preventDefault();
+        var startDateVal = $("#startDate").val();
+        var endDateVal = $("#endDate").val();
+        var check = true;
+
+        if(checkEndDate(endDateVal)) {
+            check = false;
+        }
+        if(checkStartDate(startDateVal)) {
+            check = false;
+        }
+        if (check) {
+            $("#formRoom").submit();
+        }
+    });
+
+    $('#btnSearch').on("click", function (e) {
+        e.preventDefault();
+        var startDateVal = $("#startDate").val();
+        var endDateVal = $("#endDate").val();
+        var check = true;
+        if(checkStartDate(startDateVal)) {
+            check = false;
+        }
+        if(checkEndDate(endDateVal)) {
+            check = false;
+        }
+        if (check) {
+            $("#formSearch").submit();
+        }
+    });
 </script>

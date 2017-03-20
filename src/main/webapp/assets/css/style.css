@@ -1091,13 +1091,7 @@ PANELS CONFIGURATIONS
 	background: #f4f4f4;
 	padding: 3px;
 	margin-bottom: 15px;
-	color: #12c63f;
-}
-.white-panel .orange-header {
-    background: #FF865C;
-    padding: 3px;
-    margin-bottom: 15px;
-    color: #c6c6c6;
+	color: #c6c6c6;
 }
 .white-panel .small {
 	font-size: 10px;

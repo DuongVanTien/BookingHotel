@@ -41,7 +41,7 @@
 <%--<link rel="stylesheet" href="./checkbox_files/to-do.css">--%>
 <script>
     $(document).ready(function () {
-        var date_input = $('input[name="birthday"]');
+        var date_input = $('input[name="birthDay"]');
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
         date_input.datepicker({
             format: 'yyyy/mm/dd',
@@ -52,27 +52,30 @@
     });
 </script>
 <div class="col-lg-9">
-    <form class="form-horizontal style-form" modelattribute="bookingBeanForm"
-          action="${pageContext.request.contextPath}/update" method="post">
+    <form:form class="form-horizontal style-form" modelAttribute="bookingBeanForm" id="formBooking"
+               action="${pageContext.request.contextPath}/bookingAction" method="post">
         <div>
             <aside class="col-lg-4 mt">
-                <form:form class="form-horizontal style-form" modelAttribute="clientBeanForm"
-                           action="${pageContext.request.contextPath}/update" method="post">
+                <div class="form-horizontal style-form" modelAttribute="clientBeanForm">
                     <section class="panel">
                         <div class="panel-body">
                             <h4><i style="color: #843534">Client infomation</i></h4>
                             <hr>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Fullname</label>
+                                <label class="col-sm-3 control-label">
+                                    Fullname<span class="asteriskField">*</span>
+                                </label>
                                 <div class="col-sm-9">
                                         <%--<p id="errFullname" style="color: red"></p>--%>
-                                    <input class="form-control" name="fullname" type="text" path="fullname"
-                                           placeholder=" fullname..." id="fullname">
+                                    <input class="form-control" name="fullName" type="text" path="fullName"
+                                           placeholder=" full name..." id="fullName">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Card number</label>
+                                <label class="col-sm-3 control-label">
+                                    Card number<span class="asteriskField">*</span>
+                                </label>
                                 <div class="col-sm-9">
                                         <%--<p id="errCardNumber" style="color: red"></p>--%>
                                     <input class="form-control" name="cardNumber" type="text" path="cardNumber"
@@ -80,19 +83,23 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label class="col-sm-3 control-label">Birthday</label>
+                                <label class="col-sm-3 control-label">
+                                    Birthday<span class="asteriskField">*</span>
+                                </label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input class="form-control" path="birthday" id="birthday" name="birthday"
+                                        <input class="form-control" path="birthDay" id="birthDay" name="birthDay"
                                                placeholder="yyyy/mm/dd" type="text"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Address</label>
+                                <label class="col-sm-3 control-label">
+                                    Address<span class="asteriskField">*</span>
+                                </label>
                                 <div class="col-sm-9">
                                         <%--<p id="errAddress" style="color: red"></p>--%>
                                     <input class="form-control" name="address" type="text" path="address"
@@ -101,21 +108,22 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Phone</label>
+                                <label class="col-sm-3 control-label">
+                                    Phone<span class="asteriskField">*</span>
+                                </label>
                                 <div class="col-sm-9">
                                         <%--<p id="errPhone" style="color: red"></p>--%>
                                     <input class="form-control" name="phone" type="text" path="phone"
-                                           placeholder=" phone..."
-                                           id="phone">
+                                           placeholder=" phone..." id="phone">
                                 </div>
                             </div>
                         </div>
                     </section>
-                </form:form>
+                </div>
             </aside>
 
             <aside class="col-lg-8 mt">
-                <form:form class="form-horizontal style-form" modelAttribute="roomBeanForm" method="post">
+                <div class="form-horizontal style-form" modelAttribute="roomBeanForm">
                     <section class="panel">
                         <div class="panel-body">
                             <h4><i class="fa fa-tasks" style="color: green"> Booking room infomation</i></h4>
@@ -135,7 +143,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Room name</label>
                                 <div class="col-sm-9">
-                                    <label class="control-label"> ${roomBeanForm.name} </label>
+                                    <label class="control-label">  ${roomBeanForm.id} - ${roomBeanForm.name}</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -150,60 +158,84 @@
                                     <label class="control-label">${roomBeanForm.description}</label>
                                 </div>
                             </div>
-                            <form:form class="form-horizontal style-form" modelAttribute="conditionBookingBeanForm" method="post">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Time booking</label>
                                 <div class="col-sm-9">
-                                    <label class="control-label">${conditionBookingBeanForm.startDate}
-                                    - ${conditionBookingBeanForm.endDate}</label>
+                                    <label class="control-label">
+                                            ${roomBeanForm.start} - ${roomBeanForm.end}
+                                    </label>
                                 </div>
+                                <input type="hidden" name="start" path="start" value="${roomBeanForm.start}"/>
+                                <input type="hidden" name="end" path="end" value="${roomBeanForm.end}"/>
+                                <input type="hidden" path="id" name="id" value="${roomBeanForm.id}"/>
+                                <input type="hidden" path="price" name="price" value="${roomBeanForm.price}"/>
                             </div>
-                            </form:form>
                         </div>
                     </section>
-                </form:form>
+                </div>
             </aside>
         </div>
 
         <div>
             <aside class="col-lg-12">
-                <form:form class="form-horizontal style-form" modelAttribute="bookingBeanForm"
-                    action="${pageContext.request.contextPath}/booking" method="post">
-                    <div>
-                        <div class="panel-heading">
-                            <div class="pull-left"><h4><i class="fa fa-tasks" style="color: #843534"> Service List</i></h4>
+                <div class="form-horizontal style-form">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="panel-heading">
+                                <div class="pull-left"><h4><i class="fa fa-tasks" style="color: #c75609">
+                                    Service List</i></h4>
+                                </div>
+                                <br>
                             </div>
-                            <br>
-                        </div>
-                        <div class="custom-check goleft mt" class="col-sm-6">
-                            <table id="todo" class="table table-hover custom-check">
-                                <tbody>
-                                <tr>
-                                    <td class="col-sm-5" style="text-align: center">Service name</td>
-                                    <td class="col-sm-2" style="text-align: center">Price</td>
-                                    <td class="col-sm-5" style="text-align: center">Description</td>
-                                </tr>
-                                <c:forEach items="${listServicesBeanForm}" var="service">
+                            <div class="custom-check goleft mt" class="col-sm-6">
+                                <table id="todo" class="table table-hover custom-check">
+                                    <tbody>
                                     <tr>
-                                        <td class="col-sm-5">
-                                            <form:checkbox path="services" name="services" value="${service.id}"
-                                                           label="  ${service.name}"/>
+                                        <td class="col-sm-2"></td>
+                                        <td class="col-sm-2" style="text-align: center; color: #c75609">Service name
                                         </td>
-                                        <td class="col-sm-2" style="text-align: center">${service.price}</td>
-                                        <td class="col-sm-5">${service.description}</td>
+                                        <td class="col-sm-2" style="text-align: center; color: #c75609">Price</td>
+                                        <td class="col-sm-5" style="text-align: center; color: #c75609">Description</td>
                                     </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                                    <c:forEach items="${listItemsBeanForm}" var="item">
+                                        <tr>
+                                            <td class="col-sm-2">
+                                                <form:checkbox path="items" name="items" value="${item.id}"
+                                                />
+                                            </td>
+                                            <td class="col-sm-2" style="text-align: center">${item.name}</td>
+                                            <td class="col-sm-2" style="text-align: center">${item.price}</td>
+                                            <td class="col-sm-5">${item.description}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div style="text-align: left">
-                        <button type="submit" class="btn btn-theme">Booking</button>
-                    </div>
-                </form:form>
+                    </section>
+                </div>
             </aside>
         </div>
-    </form>
+        <div class="col-md-12">
+                <%--<div class="bootstrap-iso">--%>
+                <%--<div class="container-fluid">--%>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <form:checkbox path="isCheckin" name="isCheckin" value="1" label=" Check in"/>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div style="text-align: center">
+                        <a id="btnBooking" class="btn btn-success" style="color: #efeaee">Booking</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                </div>
+            </div>
+                <%--</div>--%>
+                <%--</div>--%>
+        </div>
+
+    </form:form>
 </div>
 
 <!-- RIGHT SIDEBAR CONTENT -->
@@ -342,4 +374,9 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    $('#btnBooking').on("click", function (e) {
+        e.preventDefault();
+        $("#formBooking").submit();
+    });
+</script>

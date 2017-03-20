@@ -9,11 +9,11 @@
             <generator class="increment"/>
         </id>
 
-        <property name="checkin" type="java.util.Date">
+        <property name="checkIn" type="java.util.Date">
             <column name="checkin"/>
         </property>
 
-        <property name="checkout" type="java.util.Date">
+        <property name="checkOut" type="java.util.Date">
             <column name="checkout"/>
         </property>
 
@@ -25,7 +25,7 @@
             <column name="note"/>
         </property>
 
-        <property name="isCheckin" type="java.lang.Integer">
+        <property name="isCheckIn" type="java.lang.Integer">
             <column name="isCheckin"/>
         </property>
 
@@ -38,9 +38,9 @@
             <!--<many-to-many class="vn.framgia.model.Service"/>-->
         <!--</list>-->
 
-        <set name="services" table="tblUsedService" inverse="true">
+        <set name="items" table="tblUsedService" inverse="true">
             <key column="bookingId"/>
-            <many-to-many column="serviceId" class="vn.framgia.model.Service" />
+            <many-to-many column="itemId" class="vn.framgia.model.Item" />
         </set>
     </class>
 

@@ -2,19 +2,22 @@ package vn.framgia.service.impl;
 
 import vn.framgia.dao.*;
 
+import java.io.Serializable;
 /**
  * Created by FRAMGIA\duong.van.tien on 06/03/2017.
  *
  */
-public class BaseserviceImpl {
+public class BaseserviceImpl implements Serializable {
 
     protected IUserDAO userDAO;
     protected IRoomDAO roomDAO;
-    protected IServiceDAO serviceDAO;
+    protected IHotelDAO hotelDAO;
     protected IBookingDAO bookingDAO;
+    protected IItemDAO itemDAO;
+    protected IClientDAO clientDAO;
 
     public IUserDAO getUserDAO() {
-        return null;
+        return userDAO;
     }
 
     public void setUserDAO(IUserDAO userDAO) {
@@ -29,19 +32,35 @@ public class BaseserviceImpl {
         this.roomDAO = roomDAO;
     }
 
-    public IServiceDAO getServiceDAO() {
-        return serviceDAO;
+    public IHotelDAO getHotelDAO() {
+        return hotelDAO;
     }
 
-    public void setServiceDAO(IServiceDAO serviceDAO) {
-        this.serviceDAO = serviceDAO;
+    public void setHotelDAO(IHotelDAO hotelDAO) {
+        this.hotelDAO = hotelDAO;
     }
 
-    public IBookingDAO getBookingDAO() {
-        return bookingDAO;
+	public IBookingDAO getBookingDAO() {
+		return bookingDAO;
+	}
+
+	public void setBookingDAO(IBookingDAO bookingDAO) {
+		this.bookingDAO = bookingDAO;
+	}
+
+    public IItemDAO getItemDAO() {
+        return itemDAO;
     }
 
-    public void setBookingDAO(IBookingDAO bookingDAO) {
-        this.bookingDAO = bookingDAO;
+    public void setItemDAO(IItemDAO itemDAO) {
+        this.itemDAO = itemDAO;
+    }
+
+    public IClientDAO getClientDAO() {
+        return clientDAO;
+    }
+
+    public void setClientDAO(IClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
     }
 }

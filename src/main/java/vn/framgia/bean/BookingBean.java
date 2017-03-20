@@ -1,26 +1,27 @@
 package vn.framgia.bean;
 
 import vn.framgia.model.Client;
+import vn.framgia.model.Item;
+import vn.framgia.model.Room;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by tienduongvan on 12/03/2017.
  */
 public class BookingBean implements Serializable{
     private Integer id;
-    private Date checkin;
-    private Date checkout;
+    private Date checkIn;
+    private Date checkOut;
     private Float totalPrice;
     private String note;
     private Integer isCheckin;
     private Client client;
     private Room room;
-    private Set<Service> services = new HashSet<Service>();
+//    private Set<Item> items = new HashSet<Item>();
 
+    List items = new ArrayList();
     public BookingBean() {}
 
     public Integer getId() {
@@ -31,20 +32,20 @@ public class BookingBean implements Serializable{
         this.id = id;
     }
 
-    public Date getCheckin() {
-        return checkin;
+    public Date getCheckIn() {
+        return checkIn;
     }
 
-    public void setCheckin(Date checkin) {
-        this.checkin = checkin;
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
     }
 
-    public Date getCheckout() {
-        return checkout;
+    public Date getCheckOut() {
+        return checkOut;
     }
 
-    public void setCheckout(Date checkout) {
-        this.checkout = checkout;
+    public void setCheckOut(Date checkout) {
+        this.checkOut = checkOut;
     }
 
     public Float getTotalPrice() {
@@ -87,11 +88,24 @@ public class BookingBean implements Serializable{
         this.room = room;
     }
 
-    public Set<Service> getServices() {
-        return services;
+//    public Set<Item> getItems() {
+//        return items;
+//    }
+//
+//    public void setItems(Set<Item> items) {
+//        this.items = items;
+//    }
+
+
+    public List getItems() {
+        return items;
     }
 
-    public void setServices(Set<Service> services) {
-        this.services = services;
+    public void setItems(List items) {
+        this.items = items;
+    }
+
+    public void addItem(Item item) {
+        this.items.add(item);
     }
 }

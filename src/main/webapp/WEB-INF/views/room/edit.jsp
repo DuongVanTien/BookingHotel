@@ -5,36 +5,55 @@
   Time: 13:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="core" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <section class="wrapper">
     <div class="row mt">
         <div class="col-lg-12">
             <div class="form-panel">
-                <h4><i class="fa fa-angle-right"></i> Update Room infomation </h4>
-                <form class="form-horizontal style-form" modelAttribute="roomBeanForm"
-                      action="${pageContext.request.contextPath}/update_room" method="post">
+                <h4></i> Update Room infomation </h4>
+                <form:form class="form-horizontal style-form" modelAttribute="roomBeanForm"
+                           action="${pageContext.request.contextPath}/update_room" method="post" id="formRoom">
+                    <c:if test="${!empty err_updateRoom}">
+                        <p>
+                        <h3 style="color: red"><c:out value="${err_updateRoom}"/></h3></p>
+                    </c:if>
                     <div class="form-group">
-                        <label class="col-sm-2 col-sm-2 control-label">Room name</label>
+                        <label class="col-sm-2 col-sm-2 control-label">Room Code</label>
                         <div class="col-sm-10">
-                            <input hidden="true" class="form-control" name="id" type="text" path="id" value="${roomBeanForm.id}">
+                            <input class="form-control" name="id" name="id" type="text"
+                                   path="id" value="${roomBeanForm.id}" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Room name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="name" type="text" path="name" value="${roomBeanForm.name}">
+                            <p id="err_name" style="color: red"><c:out value="${err_name}"/></p>
+                            <input class="form-control" name="name" type="text" path="name" value="${roomBeanForm.name}"
+                                   id="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Price</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="price" type="text" path="price" value="${roomBeanForm.price}">
+                            <p id="err_price" style="color: red"><c:out value="${err_price}"/></p>
+                            <p id="err_format" style="color: red"><c:out value="${err_format}"/></p>
+                            <input class="form-control" name="price" type="text" path="price"
+                                   value="${roomBeanForm.price}" id="price">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Size</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" path="size" name="size">
+                                <c:forEach begin="1" end="5" var="i">
+                                    <option value="${i}"
+                                            <c:if test="${i eq roomBeanForm.size}">selected="selected"</c:if>>${i}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-sm-7"></div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Description</label>
@@ -43,14 +62,57 @@
                                    path="description" value="${roomBeanForm.description}">
                         </div>
                     </div>
-
-                    <div style="text-align: left">
-                        <button type="submit" class="btn btn-theme">Edit</button>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Hotel</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" path="hotelId" name="hotelId">
+                                    <option value="1" selected="selected">K</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-7"></div>
                     </div>
-                </form>
+                    <div style="text-align: left">
+                        <a class="btn btn-theme" id="btnSubmit" href="#">Add</a>
+                    </div>
+                </form:form>
             </div>
         </div>
     </div>
 </section>
-</body>
-</html>
+<script type="text/javascript">
+    $('#btnSubmit').on("click", function () {
+        var priceVal = $("#price").val();
+        var nameVal = $("#name").val();
+        var check = true;
+        if (checkEmpty(nameVal)) {
+            $("#err_name").text("name is not empty");
+            check = false;
+        }
+        if (checkEmpty(priceVal)) {
+            $("#err_price").text("price is not empty");
+            check = false;
+        }
+        if (checkNumber(priceVal)) {
+            $("#err_format").text("price is not number");
+            check = false
+        }
+        if(check){
+            $("#formRoom").submit();
+        }
+    });
+
+    function checkNumber(str) {
+        if (isNaN(str)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function checkEmpty(str) {
+        if (str == "") {
+            return true;
+        }
+        return false;
+    }
+</script>

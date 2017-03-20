@@ -7,89 +7,115 @@ import java.util.Date;
  * Created by tienduongvan on 27/02/2017.
  *
  */
+import java.util.Set;
+
 public class Booking implements Serializable {
+	private Integer id;
+	private Date checkIn;
+	private Date checkOut;
+	private Float totalPrice;
+	private String note;
+	private Client client;
+	private Room room;
+	private Integer isCheckIn;
+//	private Set<Item> items = new HashSet<Item>();
 
-    private Integer id;
-    private Date checkin;
-    private Date checkout;
-    private Float totalPrice;
-    private String note;
-    private Integer isCheckin;
-    private Client client;
-    private Room room;
-    private Set<Service> services = new HashSet<Service>();
+	private List items = new ArrayList();
+	public Booking() {
+		super();
+	}
 
-    public Booking() {}
+	public Booking(Integer id, Date checkIn, Date checkOut, Float totalPrice,
+			String note, Client client, Room room, Integer isCheckIn) {
+		super();
+		this.id = id;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.totalPrice = totalPrice;
+		this.note = note;
+		this.client = client;
+		this.room = room;
+		this.isCheckIn = isCheckIn;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Date getCheckin() {
-        return checkin;
-    }
+	public Date getCheckIn() {
+		return checkIn;
+	}
 
-    public void setCheckin(Date checkin) {
-        this.checkin = checkin;
-    }
+	public void setCheckIn(Date checkIn) {
+		this.checkIn = checkIn;
+	}
 
-    public Date getCheckout() {
-        return checkout;
-    }
+	public Date getCheckOut() {
+		return checkOut;
+	}
 
-    public void setCheckout(Date checkout) {
-        this.checkout = checkout;
-    }
+	public void setCheckOut(Date checkOut) {
+		this.checkOut = checkOut;
+	}
 
-    public Float getTotalPrice() {
-        return totalPrice;
-    }
+	public Float getTotalPrice() {
+		return totalPrice;
+	}
 
-    public void setTotalPrice(Float totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+	public void setTotalPrice(Float totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 
-    public String getNote() {
-        return note;
-    }
+	public String getNote() {
+		return note;
+	}
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+	public void setNote(String note) {
+		this.note = note;
+	}
 
-    public Integer getIsCheckin() {
-        return isCheckin;
-    }
+	public Client getClient() {
+		return client;
+	}
 
-    public void setIsCheckin(Integer isCheckin) {
-        this.isCheckin = isCheckin;
-    }
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
-    public Client getClient() {
-        return client;
-    }
+	public Room getRoom() {
+		return room;
+	}
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 
-    public Room getRoom() {
-        return room;
-    }
+	public Integer getIsCheckIn() {
+		return isCheckIn;
+	}
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+	public void setIsCheckIn(Integer isCheckIn) {
+		this.isCheckIn = isCheckIn;
+	}
 
-    public Set<Service> getServices() {
-        return services;
-    }
+//	public Set<Item> getItems() {
+//		return items;
+//	}
+//
+//	public void setItems(Set<Item> items) {
+//		this.items = items;
+//	}
 
-    public void setServices(Set<Service> services) {
-        this.services = services;
-    }
+
+	public List getItems() {
+		return items;
+	}
+
+	public void setItems(List items) {
+		this.items = items;
+	}
 }

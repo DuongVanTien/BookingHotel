@@ -5,75 +5,83 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by tienduongvan on 27/02/2017.
- *
- */
 public class Client implements Serializable {
+	private Integer id;
+	private String fullName;
+	private String cardNumber;
+	private Date birthDay;
+	private String address;
+	private String phone;
+	List<Booking> bookings =  new ArrayList<Booking>();
 
-    private Integer id;
-    private String fullname;
-    private String cardNumber;
-    private Date birthday;
-    private String address;
-    private String phone;
-    List<Booking> bookings =  new ArrayList<Booking>();
+	public Client() {
+		super();
+	}
 
-    public Client() {}
+	public Client(Integer id, String fullName, String cardNumber, Date birthDay,
+			String address, String phone) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.cardNumber = cardNumber;
+		this.birthDay = birthDay;
+		this.address = address;
+		this.phone = phone;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getFullname() {
-        return fullname;
-    }
+	public String getFullName() {
+		return fullName;
+	}
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-    public String getCardNumber() {
-        return cardNumber;
-    }
+	public String getCardNumber() {
+		return cardNumber;
+	}
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
 
-    public Date getBirthday() {
-        return birthday;
-    }
+	public Date getBirthDay() {
+		return birthDay;
+	}
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
+	public List<Booking> getBookings() {
+		return bookings;
+	}
 
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
 }
