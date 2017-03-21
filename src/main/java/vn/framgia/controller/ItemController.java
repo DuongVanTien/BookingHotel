@@ -5,14 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import vn.framgia.bean.ItemBean;
+import vn.framgia.model.Item;
 import vn.framgia.service.IItemService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -98,5 +97,19 @@ public class ItemController {
             return view;
         }
         return new ModelAndView("redirect:items");
+    }
+
+    @RequestMapping(value = "/search_item", method = RequestMethod.GET)
+    public @ResponseBody List<Item> searchItem(@RequestParam(value = "itemName") String itemName) {
+        System.out.println("----search item---");
+        List<Item> listItemBean = itemService.findItemByName(itemName);
+        System.out.println(" size : "+listItemBean);
+        ModelAndView view = new ModelAndView();
+        if (listItemBean == null) {
+            view.addObject("listRoomBeamEmpty", "Result is empty");
+            view.setViewName("items");
+            return new ArrayList<Item>();
+        }
+        return listItemBean;
     }
 }
