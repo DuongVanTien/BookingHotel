@@ -1,8 +1,12 @@
 package vn.framgia.model;
 
 import java.io.Serializable;
+import java.util.*;
 import java.util.Date;
-
+/**
+ * Created by tienduongvan on 27/02/2017.
+ *
+ */
 public class Booking implements Serializable {
 	private Integer id;
 	private Date checkIn;
@@ -13,6 +17,7 @@ public class Booking implements Serializable {
 	private Room room;
 	private Integer isCheckIn;
 
+	private List items = new ArrayList();
 	public Booking() {
 		super();
 	}
@@ -70,20 +75,20 @@ public class Booking implements Serializable {
 		this.note = note;
 	}
 
-	public Client getClientId() {
+	public Client getClient() {
 		return client;
 	}
 
-	public void setClientId(Client clientId) {
-		this.client = clientId;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
-	public Room getRoomId() {
+	public Room getRoom() {
 		return room;
 	}
 
-	public void setRoomId(Room roomId) {
-		this.room = roomId;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public Integer getIsCheckIn() {
@@ -94,4 +99,15 @@ public class Booking implements Serializable {
 		this.isCheckIn = isCheckIn;
 	}
 
+	public void addItem(Item item) {
+		this.items.add(item);
+	}
+
+	public List getItems() {
+		return items;
+	}
+
+	public void setItems(List items) {
+		this.items = items;
+	}
 }

@@ -27,6 +27,9 @@
 				<property name="bookingDAO" ref="BookingDAO"/>
 				<property name="billDAO" ref="BillDAO"/>
 				<property name="userServiceDAO" ref="UserServiceDAO"/>
+				<property name="itemDAO" ref="ItemDAO"/>
+				<property name="clientDAO" ref="ClientDAO"/>
+				<property name="roomDAO" ref="RoomDAO"/>
 			</bean>
 		</property>
 	</bean>
@@ -43,6 +46,14 @@
 		<property name="target">
 			<bean class="vn.framgia.service.impl.ItemServiceImpl">
 				<property name="itemDAO" ref="ItemDAO"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="ClientService" parent="transactionProxyTemplate">
+		<property name="target">
+			<bean class="vn.framgia.service.impl.ClientServiceImpl">
+				<property name="clientDAO" ref="ClientDAO"/>
 			</bean>
 		</property>
 	</bean>

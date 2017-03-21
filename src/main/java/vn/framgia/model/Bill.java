@@ -74,5 +74,4 @@ public class Bill implements Serializable {
 	public void setUserId(User userId) {
 		this.user = userId;
 	}
-
 }
