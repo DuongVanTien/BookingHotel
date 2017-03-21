@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by FRAMGIA\duong.van.tien on 06/03/2017.
@@ -364,5 +366,29 @@ public final class Helpers {
         while (limit > 0 && list.size() > limit) {
             list.remove(list.size() - 1);
         }
+    }
+    
+    public static String convertDatetoString(Date date){
+    	try{
+    		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    		return dateFormat.format(date);
+    		
+    	}catch(Exception e){
+    		return "";
+    	}
+    }
+
+    public static Date convertStringtoDate(String strDate) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            return sdf.parse(strDate);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static long getDayBetweenTwoDates(Date startDate, Date endDate) {
+        Long diff = endDate.getTime() - startDate.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 }
