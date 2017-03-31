@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import vn.framgia.bean.*;
 import vn.framgia.model.*;
 import vn.framgia.service.IBookingService;
@@ -134,7 +135,7 @@ public class BookingServiceImpl extends BaseserviceImpl implements IBookingServi
 	}
 
 	@Override
-	public boolean addBooking(BookingBean bookingBean, ClientBean clientBean, RoomBean roomBean) {
+	public int addBooking(BookingBean bookingBean, ClientBean clientBean, RoomBean roomBean) {
 		try {
 			Booking booking = new Booking();
 			Date checkin = Helpers.convertStringtoDate(roomBean.getStart());
@@ -154,10 +155,34 @@ public class BookingServiceImpl extends BaseserviceImpl implements IBookingServi
 				booking.addItem(item);
 			}
 			bookingDAO.save(booking);
-			return true;
+			return booking.getId();
 		} catch (Exception e) {
 			logger.info("Exception at function addBooking in class BookingServiceImpl : ", e);
 		}
-		return false;
+		return 0;
+	}
+
+	@Override
+	public List<RoomBean> listRooms(Integer offset, Integer maxResults) {
+		try {
+			List<Room> listRooms = roomDAO.list(offset, maxResults);
+			if(!Helpers.isEmpty(listRooms)) {
+				List<RoomBean> listRoomsBean = new ArrayList<RoomBean>();
+				for(Room room : listRooms) {
+					RoomBean roomBean = new RoomBean();
+					BeanUtils.copyProperties(room, roomBean);
+					listRoomsBean.add(roomBean);
+				}
+				return listRoomsBean;
+			}
+		} catch (Exception e) {
+			logger.error("Exception at function list in BookingServiceImpl : ", e);
+		}
+		return null;
+	}
+
+	@Override
+	public Long countRoom() {
+		return roomDAO.count();
 	}
 }
